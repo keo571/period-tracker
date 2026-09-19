@@ -1,0 +1,12 @@
+# Private health data: never commit.
+data/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+.env
+
+node_modules/
+dist/
+*.tgz

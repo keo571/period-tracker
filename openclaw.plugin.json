@@ -1,0 +1,34 @@
+{
+  "id": "period-tracker",
+  "name": "Period Tracker",
+  "description": "Personal menstrual cycle tracking: record period start and end dates, review history, and predict the next period from recent cycles.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "dbPath": {
+        "type": "string",
+        "description": "SQLite database file. Defaults to <OpenClaw state dir>/period-tracker/period.db so data survives plugin reinstalls."
+      },
+      "timeZone": {
+        "type": "string",
+        "description": "IANA time zone used to decide what 'today' is, e.g. Europe/London. Defaults to the host zone."
+      },
+      "reminders": {
+        "type": "boolean",
+        "description": "Suggest follow-up reminders after a period start is recorded. Defaults to true."
+      }
+    }
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "tools": [
+      "period_record",
+      "period_status",
+      "period_history",
+      "period_predict"
+    ]
+  }
+}
