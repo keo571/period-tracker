@@ -111,6 +111,17 @@ openclaw gateway restart
 openclaw plugins reload period-tracker
 ```
 
+### Agent says it has no such tool
+
+If `openclaw plugins inspect period-tracker --runtime` shows `Status: loaded` with the four tools but the agent still cannot see them, the tool policy is filtering them out. A restricted `tools.profile` (`minimal`, `coding`, `messaging`) does not include plugin tools. Add them on top of the profile:
+
+```bash
+openclaw config set tools.alsoAllow '["period_record","period_status","period_history","period_predict"]' --strict-json
+openclaw gateway restart
+```
+
+An unset profile or `tools.profile: "full"` needs no extra step.
+
 ### Moving the database
 
 To keep the data somewhere other than the default, set `dbPath` and restart the Gateway:
