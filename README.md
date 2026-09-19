@@ -93,7 +93,7 @@ Commit `openclaw.plugin.json` whenever `plugin:build` changes it. It lists the t
 ## Deploying to the OpenClaw machine
 
 ```bash
-cd ~/projects/period-tracker
+cd ~/Developer/Plugins/period-tracker
 git pull
 npm install
 npm run plugin:build
