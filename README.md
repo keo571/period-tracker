@@ -105,8 +105,21 @@ npm test
 openclaw plugins install --link --force --accept-capabilities .
 openclaw plugins inspect period-tracker --runtime
 
-# after later updates
+# after later updates: restart the Gateway so it picks up the rebuilt plugin
+openclaw gateway restart
+# on OpenClaw 2026.9.5 or newer this works too, without a full restart:
 openclaw plugins reload period-tracker
+```
+
+### Moving the database
+
+To keep the data somewhere other than the default, set `dbPath` and restart the Gateway:
+
+```bash
+mkdir -p ~/Library/Application\ Support/PeriodTracker
+[ -f ~/.openclaw/period-tracker/period.db ] && mv ~/.openclaw/period-tracker/period.db* ~/Library/Application\ Support/PeriodTracker/
+openclaw config set plugins.entries.period-tracker.config.dbPath "~/Library/Application Support/PeriodTracker/period.db"
+openclaw gateway restart
 ```
 
 ## Privacy
